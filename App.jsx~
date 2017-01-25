@@ -1,0 +1,18 @@
+import React from 'react';
+
+var testvar = "New H1";
+
+class App extends React.Component {
+   render() {
+      return (
+         <div>
+	    <h1>{testvar}</h1>
+            <strong>Hey World!!! jayanth here</strong>
+         </div>
+      );
+   }
+}
+
+
+
+export App;
