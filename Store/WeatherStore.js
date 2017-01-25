@@ -7,8 +7,15 @@ var cnt =  "&cnt=15";
 
 
 class WeatherStore {
+	//search string is city name to be searched
+	//changed in header.js
 	@observable searchString = ""
+	
+	//weather data is stored here
+	//weather data is rendered in body.js
 	@observable weatherData = ""
+	
+	//to determine whether loading is in progress or not
 	@observable isLoading = false	
 
   	@action startLoading() {
@@ -24,11 +31,12 @@ class WeatherStore {
     	//console.log(this.weatherData)
   	}	
 
+	//Get new weather data from api
+	//query is the city name
 	@action fetchWeatherData(query) {
 		var that = this;
 		this.startLoading();	
-		//console.log(query + "from here yo dude")
-	  	fetch(baseUrl + query + appid + cnt)
+		fetch(baseUrl + query + appid + cnt)
             .then( (response) => {
                 return response.json() })   
                     .then( (json) => {
@@ -42,6 +50,7 @@ class WeatherStore {
 		this.subscribeToLocationChanges()
 	}	
 
+	//Reaction to auto fetch weather data when search string changes
 	subscribeToLocationChanges() {
 		reaction(
 			() => this.searchString,
